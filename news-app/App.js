@@ -2,7 +2,6 @@ import { StatusBar as ExpoStatusBar  } from "expo-status-bar";
 import React , { useState, useEffect} from "react";
 import { StyleSheet, View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 import ListItem from './components/ListItem';
-import DummyArticles from './DummyData/articles.json'
 import Constants from "expo-constants";
 import axios from "axios";
 
@@ -16,6 +15,9 @@ const styles = StyleSheet.create({
   },
 });
 
+//===================================================================
+// アプリケーションメイン
+//===================================================================
 export default function App() {
   const [articles, setArticles] = useState([])
   useEffect(() => {
