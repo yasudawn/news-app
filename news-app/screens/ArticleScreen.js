@@ -1,7 +1,7 @@
 //===================================================================
 // インポート
 //===================================================================
-import { StyleSheet, View, SafeAreaView, StatusBar } from 'react-native';
+import { StyleSheet, SafeAreaView} from 'react-native';
 import WebView from "react-native-webview"
 import Loading from '../components/Loading';
 
