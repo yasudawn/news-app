@@ -3,7 +3,7 @@
 //===================================================================
 import { StatusBar as ExpoStatusBar  } from "expo-status-bar";
 import React , { useState, useEffect} from "react";
-import { StyleSheet, View, FlatList, SafeAreaView, StatusBar } from 'react-native';
+import { StyleSheet, View, FlatList, SafeAreaView, StatusBar,RefreshControl } from 'react-native';
 import ListItem from '../components/ListItem';
 import Loading from "../components/Loading"
 import Constants from "expo-constants";
@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
 export default function NewsListScreen({navigation}) {
     const [articles, setArticles] = useState([]);
     const [loading , setLoading] = useState(false);
+    const [refreshing, setRefreshing] = React.useState(false);
     useEffect(() => {
         fetchArticles();
     }, [])
-
   //=================================================================
   // ニュースサイトからデータを取得する
   //=================================================================
@@ -39,14 +39,18 @@ export default function NewsListScreen({navigation}) {
     try {
       const response = await axios.get(URL);
       setArticles(response.data.articles);
-    setLoading(true);
+      setLoading(true);
     } catch(error) {
 
     }
     setLoading(false);
   }
 
-
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchArticles();
+    setRefreshing(false);
+  }
 
   //=================================================================
   // ニュースリスト表示
@@ -64,6 +68,12 @@ export default function NewsListScreen({navigation}) {
             onPress = {() => navigation.navigate("Aeticle" ,{article: item})}
           />}
           keyExtractor = {(item, index) => index.toString()}
+          refreshControl = {
+              <RefreshControl 
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+              />
+          }
         />
       </View>
       {loading && <Loading />}
