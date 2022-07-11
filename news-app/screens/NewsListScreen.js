@@ -15,6 +15,7 @@ const URL= `https://newsapi.org/v2/top-headlines?country=jp&apiKey=${Constants.m
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding:0,
     backgroundColor: '#fff',
     // Android 対応
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,

@@ -4,18 +4,24 @@ const styles = StyleSheet.create({
     itemcontainer:  {
       height : 100,
       width  : '100%',
+      padding : 3,
+    },
+    maincontainer:  {
+      flexDirection :"row",
+      width  : '100%',
       borderColor : 'gray',
       borderWidth : 1,
-      flexDirection :"row",
+      borderRadius: 10,
     },
   
     leftconrainer: {
-      width : 100,
+      padding : 2,
+      width : 84,
     },
     rightcontiner: {
       flex : 1,
       flexDirection : "column" ,
-      padding : 10,
+      padding : 5,
       justifyContent : "space-between",
     },
     text : {
@@ -30,17 +36,19 @@ const styles = StyleSheet.create({
   const ListItem = ({imageUrl, title, author, onPress}) => {
     return (
         <TouchableOpacity style= {styles.itemcontainer} onPress={onPress}>
-          <View style={styles.leftconrainer}>
-          {!!imageUrl && (<Image
-            style = {{width : 100, height :100,}}
-            source = {{uri:imageUrl}}
-          />)}
-          </View>
-          <View style={styles.rightcontiner}>
-            <Text numberOfLines={3} style={styles.text}>
-            {title}
-            </Text>
-            <Text style={styles.subText}>{author}</Text>
+          <View style={styles.maincontainer}>
+            <View style={styles.leftconrainer}>
+            {!!imageUrl && (<Image
+              style = {{width : 84, height :84,}}
+              source = {{uri:imageUrl}}
+            />)}
+            </View>
+            <View style={styles.rightcontiner}>
+              <Text numberOfLines={3} style={styles.text}>
+              {title}
+              </Text>
+              <Text style={styles.subText}>{author}</Text>
+            </View>
           </View>
       </TouchableOpacity>
     )
